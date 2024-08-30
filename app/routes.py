@@ -1,16 +1,18 @@
 # app/routes.py
-from flask import render_template, redirect, url_for, request
+from flask import render_template, session, redirect, url_for, flash, request
 from . import db
 from .models import db, Disciplina
 from flask import Blueprint
-from datetime import datetime  # Importa o módulo datetime
+from datetime import datetime, timedelta, timezone
 
 main = Blueprint('main', __name__)
 
 @main.route('/', methods=['GET', 'POST'])
 def index():
-    current_time = datetime.now()  # Obtém a data e hora atuais
-    formatted_time = current_time.strftime('%B %d, %Y %I:%M %p')  # Formata a data e hora
+    # Definindo o fuso horário de Brasília (UTC-3)
+    brasilia_offset = timezone(timedelta(hours=-3))
+    current_time = datetime.now(brasilia_offset)
+    formatted_time = current_time.strftime('%B %d, %Y %I:%M %p')
     return render_template('index.html', current_time=formatted_time)
 
 @main.route('/disciplinas', methods=['GET', 'POST'])
