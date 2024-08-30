@@ -1,5 +1,4 @@
 # app/models.py
-
 from . import db
 
 class Role(db.Model):
