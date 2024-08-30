@@ -1,9 +1,68 @@
 {% extends "base.html" %}
 
-{% block title %}Flasky{% endblock %}
+{% block title %}Cadastro de Disciplinas{% endblock %}
 
 {% block page_content %}
-<div class="page-header">
-    <h1>Hello, {{ name }}!</h1>
-</div>
+
+<form action="" method="post" class="form" role="form">  
+    <div class="form-group required">
+      <label class="control-label" for="name">Cadastre a nova disciplina e o semestre associado:</label>
+      <input class="form-control" id="name" name="name" required="" type="text" value="">
+    </div>
+  
+    <div class="form-group required">
+      <label class="control-label">Selecione o semestre:</label>
+  
+      <div class="radio">
+        <label>
+          <input id="semester-0" name="semester" type="radio" value="1º semestre" required> 1º semestre
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input id="semester-1" name="semester" type="radio" value="2º semestre" required> 2º semestre
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input id="semester-2" name="semester" type="radio" value="3º semestre" required> 3º semestre
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input id="semester-3" name="semester" type="radio" value="4º semestre" required> 4º semestre
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input id="semester-4" name="semester" type="radio" value="5º semestre" required> 5º semestre
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input id="semester-5" name="semester" type="radio" value="6º semestre" required> 6º semestre
+        </label>
+      </div>
+    </div>
+  
+    <input class="btn btn-default" id="submit" name="submit" type="submit" value="Cadastrar">
+  </form>
+
+<h2>Relação de disciplinas cadastradas</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Disciplina</th>
+            <th>Semestre</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for disciplina in disciplinas %}
+        <tr>
+            <td>{{ disciplina.name }}</td>
+            <td>{{ disciplina.semester }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
